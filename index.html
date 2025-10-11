@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Taylor Consulting Group offers strategic business consulting for growth and efficiency.">
-    <meta name="keywords" content="business consulting, strategy, Taylor Consulting">
+    <title>Taylor Consulting Group | Strategic Insight for Growth</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Roboto for body, Playfair Display for headings -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <title>Taylor Consulting Group - Dark Theme</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* --- Dark Theme CSS Variables and Global Styles --- */
+        /* --- CSS Variables and Base Styles --- */
         :root {
-            --primary-blue: #3b82f6;
-            --primary-blue-light: #60a5fa;
-            --background-dark: #111827; /* Deep Navy Blue */
-            --background-medium: #1f2937; /* Lighter Navy for cards */
-            --light-text: #f3f4f6;
-            --secondary-text: #9ca3af;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.2);
+            --primary-green: #00A66A;
+            --dark-text: #1a202c;
+            --secondary-text: #4a5568;
+            --background-light: #ffffff;
+            --border-color: #e2e8f0;
+            --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         html {
@@ -30,13 +30,10 @@
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            color: var(--light-text);
-            background-color: var(--background-dark);
-            overflow-x: hidden;
+            background-color: var(--background-light);
+            color: var(--dark-text);
         }
 
         .container {
@@ -44,815 +41,478 @@
             margin: 0 auto;
             padding: 0 20px;
         }
-
-        section {
-            padding: 60px 0;
-            border-top: 1px solid var(--border-color);
-        }
         
-        #method, #about {
-            background-color: var(--background-medium);
+        section {
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         h1, h2, h3 {
-            margin-top: 0;
-            font-family: 'Playfair Display', serif;
+            line-height: 1.3;
         }
 
         h2 {
-            font-size: 38px;
-            color: white;
-            margin-bottom: 40px;
-            font-weight: 700;
+            font-size: 2.5rem;
             text-align: center;
+            margin-bottom: 20px;
+            font-weight: 700;
         }
 
-        /* --- Header --- */
+        .section-subtitle {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 50px auto;
+            color: var(--secondary-text);
+            font-size: 1.1rem;
+        }
+
+        /* --- Header & Navigation --- */
         .header {
-            background: rgba(17, 24, 39, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            position: fixed;
+            position: sticky;
             top: 0;
-            left: 0;
             width: 100%;
             z-index: 1000;
-            transition: background-color 0.3s ease;
+            background-color: var(--background-light);
+            transition: box-shadow 0.3s ease;
         }
 
-        .navbar {
+        .header.scrolled {
+            box-shadow: var(--shadow-light);
+        }
+
+        .header nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            height: 70px;
         }
 
-        .nav-logo a {
+        .nav-logo {
             text-decoration: none;
-            color: white;
-            font-size: 28px;
             font-weight: 700;
-            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--dark-text);
         }
         
         .nav-logo span {
-            color: var(--primary-blue);
+            color: var(--primary-green);
         }
 
-        .nav-links {
+        nav ul {
+            list-style: none;
             display: flex;
-            gap: 40px;
+            gap: 30px;
         }
 
-        .nav-links a {
+        nav a {
             text-decoration: none;
-            color: var(--secondary-text);
+            color: var(--dark-text);
             font-weight: 500;
-            font-size: 16px;
-            position: relative;
             transition: color 0.3s ease;
+            position: relative;
+            padding: 5px 0;
         }
-        
-        .nav-links a::after {
+
+        nav a:not(.nav-contact-btn):not(.nav-logo)::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-blue);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: white;
-        }
-
-        .nav-links a.active::after {
             width: 100%;
+            height: 2px;
+            background-color: var(--primary-green);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+
+        nav a:hover:not(.nav-contact-btn):not(.nav-logo)::after,
+        nav a.active:not(.nav-contact-btn):not(.nav-logo)::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
         }
         
-        .hamburger-menu {
-            display: none;
+        nav a.active {
+            color: var(--primary-green);
+        }
+
+        .nav-contact-btn {
+            background: var(--primary-green);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-contact-btn:hover {
+            background: #008c58;
         }
 
         /* --- Hero Section --- */
         .hero {
-            background: none;
-            padding: 160px 0 100px 0;
-            border-top: none;
-            margin-top: 80px;
-            position: relative;
+            background-color: #f8fafc;
+            text-align: center;
+            padding: 120px 0;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, var(--background-dark) 0%, #1e40af 100%);
-            opacity: 0.6;
-            z-index: -1;
-        }
-
-        .hero-content {
-            display: flex;
-            align-items: center;
-        }
-
-        .hero-headline {
-            flex-basis: 60%;
-            text-align: right;
-            padding-right: 50px;
-        }
-        
-        .hero-headline h1 {
-            font-size: 64px;
-            color: white;
-            line-height: 1.2;
-            font-weight: 700;
-        }
-
-        .hero-headline span {
-            color: var(--primary-blue-light);
-            font-style: italic;
-        }
-        
-        .hero-divider {
-            border-left: 1px solid rgba(255, 255, 255, 0.2);
-            height: 220px;
-        }
-
-        .hero-keywords {
-            flex-basis: 39%;
-            padding-left: 50px;
-        }
-
-        .hero-keywords p {
-            margin: 0 0 15px 0;
-            font-size: 20px;
-            color: var(--light-text);
-            font-weight: 500;
-        }
-        
-        /* --- Glassmorphism Vertical Tabs for Services --- */
-        .tabs-container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: rgba(31, 41, 55, 0.5);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            display: flex;
-            box-shadow: var(--shadow-light);
-        }
-        .tab-buttons {
-            display: flex;
-            flex-direction: column;
-            flex-basis: 35%;
-            border-right: 1px solid var(--border-color);
-        }
-        .tab-button {
-            padding: 20px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            border-bottom: 1px solid var(--border-color);
-            font-family: 'Roboto', Arial, sans-serif;
-            font-size: 16px;
-            font-weight: 500;
-            color: var(--secondary-text);
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-align: left;
-            transition: background-color 0.3s ease;
-        }
-        .tab-button:last-child {
-            border-bottom: none;
-        }
-        .tab-button.active {
-            background-color: rgba(59, 130, 246, 0.2);
-            color: white;
-            border-right: 2px solid var(--primary-blue);
-        }
-        .tab-content-container {
-            flex-basis: 65%;
-            padding: 30px;
-        }
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        .tab-content h3 {
-            font-size: 24px;
-            color: var(--primary-blue-light);
-            margin-bottom: 10px;
-        }
-        .tab-content p {
-            color: var(--secondary-text);
-            margin: 0;
-            font-size: 16px;
-        }
-
-        /* --- Horizontal Stepper for Method --- */
-        .stepper-container {
+        .hero h1 {
+            font-size: 3.5rem;
             max-width: 800px;
-            margin: 0 auto;
+            margin: 0 auto 20px auto;
         }
-        .stepper-steps {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            position: relative;
-            margin-bottom: 30px;
-        }
-        .step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            text-align: center;
-            width: 100px;
-        }
-        .step-circle {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: var(--background-dark);
-            border: 2px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
+
+        .hero p {
+            font-size: 1.2rem;
             color: var(--secondary-text);
-            transition: all 0.3s ease;
+            max-width: 650px;
+            margin: 0 auto 30px auto;
         }
-        .step-title {
-            margin-top: 10px;
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-green);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 8px;
+            text-decoration: none;
             font-weight: 500;
-            color: var(--secondary-text);
-            transition: all 0.3s ease;
-        }
-        .step.active .step-circle {
-            background-color: var(--primary-blue);
-            border-color: var(--primary-blue);
-            color: white;
-        }
-        .step.active .step-title {
-            color: white;
-        }
-        .stepper-steps::before {
-            content: '';
-            position: absolute;
-            top: 21px;
-            left: 15%;
-            right: 15%;
-            height: 2px;
-            background-color: var(--border-color);
-            z-index: -1;
-        }
-        .stepper-content-container {
-            background: rgba(17, 24, 39, 0.5);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 30px;
-            min-height: 150px;
-            box-shadow: var(--shadow-light);
-        }
-        .stepper-content {
-            display: none;
-        }
-        .stepper-content.active {
-            display: block;
-        }
-        .stepper-content h3 {
-            font-size: 22px;
-            color: var(--primary-blue-light);
-            margin-bottom: 10px;
-        }
-        .stepper-content p {
-            color: var(--secondary-text);
-            margin: 0;
-            font-size: 16px;
-        }
-        .stepper-content ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        .stepper-content li {
-             margin-bottom: 10px;
-             color: var(--light-text);
-             padding-left: 25px;
-             position: relative;
-        }
-        .stepper-content li::before {
-            content: '\f00c';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            left: 0;
-            color: var(--primary-blue);
-        }
-        
-        /* --- Testimonial Carousel --- */
-        .testimonial-carousel {
-            max-width: 750px;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-        }
-        .testimonial-slides {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        .testimonial-slide {
-            flex: 0 0 100%;
-            text-align: center;
-        }
-        .testimonial-slide p.quote {
-            font-size: 22px;
-            color: var(--light-text);
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-        .testimonial-author img {
-            border-radius: 50%;
-        }
-        .author-name {
-            font-weight: 600;
-            color: white;
-        }
-        .carousel-button {
-            background: rgba(31, 41, 55, 0.8);
-            border: 1px solid var(--border-color);
-            color: white;
-        }
-        .dot {
-            background: #4b5563;
-        }
-        .dot.active {
-            background: var(--primary-blue);
-        }
-        
-        /* --- About Section --- */
-        .about-content {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-        }
-        .about-text, .about-image {
-            flex: 1;
-        }
-        .about-text h2 { text-align: left; }
-        .about-text p {
-             color: var(--secondary-text);
-             font-size: 16px;
-        }
-        .about-image img {
-            width: 100%;
-            border-radius: 12px;
-        }
-        
-        /* --- NEW: Use Cases Feature Layout --- */
-        .feature-container {
-            display: flex;
-            gap: 1px; /* Creates the dividing line effect */
-            background-color: var(--border-color);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow-light);
-            transition: transform 0.3s ease;
-        }
-        .feature-container:hover {
-            transform: translateY(-5px);
-        }
-        .feature-column {
-            flex: 1;
-            padding: 30px;
-            background: rgba(31, 41, 55, 0.5);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-        .feature-column h3 {
-            font-size: 22px;
-            color: var(--primary-blue-light);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .feature-column ul {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0 0 0;
-        }
-        .feature-column li {
-            position: relative;
-            padding-left: 25px;
-            margin-bottom: 10px;
-            color: var(--secondary-text);
-        }
-        .feature-column li::before {
-            content: '\f00c';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            left: 0;
-            color: var(--primary-blue);
-        }
-        
-        /* --- Call to Action Banner --- */
-        .cta-banner {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-deep) 100%);
-        }
-        .cta-banner a {
+            font-size: 1.1rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .cta-banner a:hover {
+
+        .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            box-shadow: var(--shadow-medium);
+            background: #008c58;
+        }
+
+        /* --- Services/Capabilities Section --- */
+        .capabilities-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .capability-item {
+            background-color: var(--background-light);
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .capability-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .capability-item h3 {
+            font-size: 1.25rem;
+            color: var(--primary-green);
+            margin-bottom: 10px;
+        }
+
+        .capability-item p {
+            color: var(--secondary-text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* --- About Us Section --- */
+        #about {
+            background-color: #f8fafc;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .about-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+
+        .about-content p {
+            margin-bottom: 15px;
+            color: var(--secondary-text);
+        }
+
+        /* --- Contact Section --- */
+        #contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            display: grid;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
         }
         
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        #contact-form label {
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: var(--dark-text);
+        }
+
+        #contact-form input,
+        #contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        #contact-form input:focus,
+        #contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(0, 166, 106, 0.2);
+        }
+
+        #contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        #contact-form button {
+            width: auto;
+            justify-self: center;
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 13px 40px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        #contact-form button:hover {
+            background: #008c58;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
         /* --- Footer --- */
         footer {
-            background-color: #0c111c;
+            background-color: var(--dark-text);
+            color: #aaa;
+            padding: 30px 0;
+            text-align: center;
         }
-        .footer-grid, .footer-copyright {
-            border-top: 1px solid var(--border-color);
+
+        .footer-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--background-light);
         }
         
-        /* --- Responsive Styles --- */
+        .footer-logo span {
+            color: var(--primary-green);
+        }
+
+        .footer-copyright {
+            font-size: 0.9rem;
+        }
+
+        /* --- Responsive Design --- */
         @media (max-width: 768px) {
-            h2 { font-size: 32px; }
-            .navbar { padding: 15px; }
+            h2 { font-size: 2rem; }
+            .hero h1 { font-size: 2.5rem; }
+
+            nav ul { display: none; } /* Basic responsive: hides nav links. A burger menu would be needed for a full solution. */
             
-            .nav-links { display: none; }
-            .hamburger-menu {
-                display: flex;
+            .about-grid {
+                grid-template-columns: 1fr;
             }
             
-            .hero-content, .about-content, .footer-grid, .tabs-container, .feature-container {
-                flex-direction: column;
+            .about-image {
+                order: -1; /* Puts image on top on mobile */
             }
-            .hero { padding: 100px 0 60px; }
-            .hero-headline h1 { font-size: 42px; }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+
     <header class="header">
-        <nav class="navbar container">
-            <div class="nav-logo">
-                <a href="index.html">TC<span>G</span></a>
-            </div>
-            <div class="nav-links">
-                <a href="#services">Core</a>
-                <a href="#method">Our Method</a>
-                <a href="#about">About</a>
-                <a href="#use-cases">Use Cases</a>
-            </div>
-            <div class="hamburger-menu">
-                <span></span><span></span><span></span>
-            </div>
+        <nav class="container">
+            <a href="#" class="nav-logo">TC<span>G</span></a>
+            <ul>
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About Us</a></li>
+            </ul>
+            <a href="#contact" class="nav-contact-btn">Contact</a>
         </nav>
     </header>
 
     <main>
         <section id="home" class="hero">
-            <div class="hero-content container">
-                <div class="hero-headline">
-                    <h1>Culture Eats<br><span>Everything</span> for Breakfast</h1>
-                </div>
-                <div class="hero-divider"></div>
-                <div class="hero-keywords">
-                    <p>Strategy</p>
-                    <p>Executives</p>
-                    <p>Processes</p>
-                    <p>Innovation</p>
-                    <p>Transformation</p>
-                </div>
+            <div class="container">
+                <h1>Driving Growth Through Strategic Insight</h1>
+                <p>Taylor Consulting Group partners with businesses to unlock potential, navigate complexity, and achieve sustainable results.</p>
+                <a href="#services" class="cta-button">Explore Our Services</a>
             </div>
         </section>
 
         <section id="services">
             <div class="container">
                 <h2>Our Core Capabilities</h2>
-                <div class="tabs-container">
-                    <div class="tab-buttons">
-                        <button class="tab-button active" data-tab="1">
-                            <i class="fa-solid fa-chart-pie"></i>
-                            <span>Sensemaker Analysis</span>
-                        </button>
-                        <button class="tab-button" data-tab="2">
-                            <i class="fa-solid fa-users"></i>
-                            <span>Talent Acquisition</span>
-                        </button>
-                        <button class="tab-button" data-tab="3">
-                            <i class="fa-solid fa-arrow-trend-up"></i>
-                            <span>EOS Implementation</span>
-                        </button>
+                <p class="section-subtitle">We provide tailored solutions across a range of essential business functions to help you overcome challenges and seize opportunities.</p>
+                <div class="capabilities-container">
+                    <div class="capability-item">
+                        <h3>Strategy & Planning</h3>
+                        <p>Developing robust, data-driven strategies that align with your long-term vision and market realities.</p>
                     </div>
-                    <div class="tab-content-container">
-                        <div class="tab-content active" data-tab="1">
-                            <h3>Sensemaker Analysis</h3>
-                            <p>Utilizing SenseMaker methodology to collect and analyze narratives for deeper insights into complex organizational dynamics.</p>
-                        </div>
-                        <div class="tab-content" data-tab="2">
-                            <h3>Specialized Talent Acquisition</h3>
-                            <p>Strategic sourcing and recruitment of high-caliber professionals tailored to your business needs and long-term success.</p>
-                        </div>
-                        <div class="tab-content" data-tab="3">
-                            <h3>EOS Implementation</h3>
-                            <p>Implementing the Entrepreneurial Operating System (EOS) to align teams, clarify vision, and drive accountable execution.</p>
-                        </div>
+                    <div class="capability-item">
+                        <h3>Operational Excellence</h3>
+                        <p>Streamlining processes, optimizing workflows, and enhancing productivity for peak performance.</p>
+                    </div>
+                    <div class="capability-item">
+                        <h3>Market Analysis</h3>
+                        <p>Providing deep market intelligence and competitive analysis to inform your strategic decisions.</p>
+                    </div>
+                    <div class="capability-item">
+                        <h3>Digital Transformation</h3>
+                        <p>Guiding your business through technology adoption to improve efficiency and customer engagement.</p>
+                    </div>
+                    <div class="capability-item">
+                        <h3>Financial Advisory</h3>
+                        <p>Offering expert financial modeling, risk management, and investment strategy services.</p>
+                    </div>
+                    <div class="capability-item">
+                        <h3>Leadership Development</h3>
+                        <p>Cultivating strong leadership and high-performing teams through targeted coaching and training.</p>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <section id="method">
-            <div class="container">
-                <h2>Our Method</h2>
-                <div class="stepper-container">
-                    <div class="stepper-steps">
-                        <div class="step active" data-step="1">
-                            <div class="step-circle">1</div>
-                            <div class="step-title">Understand</div>
-                        </div>
-                        <div class="step" data-step="2">
-                            <div class="step-circle">2</div>
-                            <div class="step-title">Analyze</div>
-                        </div>
-                        <div class="step" data-step="3">
-                            <div class="step-circle">3</div>
-                            <div class="step-title">Implement</div>
-                        </div>
-                    </div>
-                    <div class="stepper-content-container">
-                        <div class="stepper-content active" data-step="1">
-                            <h3>1. Understand the Business Need</h3>
-                            <p>Our process begins with a business-centric discovery session to deeply understand your unique challenges and strategic goals.</p>
-                        </div>
-                        <div class="stepper-content" data-step="2">
-                            <h3>2. Apply Sensemaker</h3>
-                            <p>We gather micro-narratives from across your organization to reveal the true patterns and dynamics at play, helping us diagnose the core issues.</p>
-                        </div>
-                        <div class="stepper-content" data-step="3">
-                            <h3>3. Implement Tailored Solutions</h3>
-                            <p>Based on the analysis, we deploy the right service to address the core issue:</p>
-                            <ul>
-                                <li>Culture First Headhunting</li>
-                                <li>EOS Implementation</li>
-                                <li>Vanguard Stabilizing Projects</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="testimonials">
-            <div class="container">
-                <h2>What Our Clients Say</h2>
-                <div class="testimonial-carousel">
-                    <div class="testimonial-slides">
-                        <div class="testimonial-slide">
-                            <p class="quote">"Working with TCG was a transformative experience. Their insights into our company culture were invaluable and directly led to a 40% increase in team efficiency."</p>
-                            <div class="testimonial-author">
-                                <img src="https://placehold.co/60x60/f3f4f6/111827?text=JS" alt="Jane Smith">
-                                <div class="testimonial-author-info">
-                                    <p class="author-name">Jane Smith</p>
-                                    <p class="author-title">CEO, Innovatech Solutions</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-slide">
-                            <p class="quote">"The EOS implementation was flawless. For the first time, our entire leadership team is on the same page, and we have clear, measurable traction."</p>
-                            <div class="testimonial-author">
-                                <img src="https://placehold.co/60x60/f3f4f6/111827?text=MD" alt="Mark Davis">
-                                <div class="testimonial-author-info">
-                                    <p class="author-name">Mark Davis</p>
-                                    <p class="author-title">President, Growth Co.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-slide">
-                            <p class="quote">"Their talent acquisition service found us a CTO that was a perfect fit, something we struggled with for over a year. Highly recommended."</p>
-                            <div class="testimonial-author">
-                                <img src="https://placehold.co/60x60/f3f4f6/111827?text=LW" alt="Linda Wilson">
-                                <div class="testimonial-author-info">
-                                    <p class="author-name">Linda Wilson</p>
-                                    <p class="author-title">Founder, Tech Startup</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-nav">
-                        <button class="carousel-button prev-btn">&lt;</button>
-                        <button class="carousel-button next-btn">&gt;</button>
-                    </div>
-                </div>
-                <div class="carousel-dots"></div>
             </div>
         </section>
         
         <section id="about">
-            <div class="about-content container">
-                <div class="about-text">
-                    <h2>Your Trusted Partner in Growth</h2>
-                    <p>We are a team of experienced consultants dedicated to delivering measurable impact and building lasting relationships with our clients.</p> 
-                    <p>We believe that 'Culture Eats Everything' if not understood and communicated effectively. That's why we employ a Complexity Science approach to ensure transformations are sustainable and resilient.</p>
-                </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=550&h=350&fit=crop" alt="Consultants in a meeting" loading="lazy">
-                </div>
-            </div>
-        </section>
-
-        <section id="use-cases">
             <div class="container">
-                <h2>Who We Help: Use Cases</h2>
-                 <div class="feature-container">
-                    <div class="feature-column">
-                        <h3><i class="fa-solid fa-rocket" style="color: var(--primary-blue);"></i> For Startups & Scale-ups</h3>
-                        <ul>
-                            <li>Establish a resilient culture</li>
-                            <li>Implement scalable processes</li>
-                            <li>Secure executive talent</li>
-                        </ul>
+                <h2>Your Trusted Partner in Growth</h2>
+                <p class="section-subtitle">We are a team of experienced consultants dedicated to delivering measurable impact and building lasting relationships with our clients.</p>
+                <div class="about-grid">
+                    <div class="about-content">
+                        <h3>Our Philosophy</h3>
+                        <p>At Taylor Consulting Group, we believe success is built on a foundation of collaboration and clarity. We immerse ourselves in your world to understand your unique challenges and opportunities, acting as a true extension of your team.</p>
+                        <p>Our approach is hands-on and results-oriented. We don't just deliver reports; we roll up our sleeves to help you implement change, navigate obstacles, and achieve your most ambitious goals.</p>
                     </div>
-                    <div class="feature-column">
-                        <h3><i class="fa-solid fa-building" style="color: var(--primary-blue);"></i> For Mid-Sized Businesses</h3>
-                        <ul>
-                            <li>Break through growth plateaus</li>
-                            <li>Optimize existing processes</li>
-                            <li>Align leadership teams</li>
-                        </ul>
-                    </div>
-                    <div class="feature-column">
-                        <h3><i class="fa-solid fa-globe" style="color: var(--primary-blue);"></i> For Large Enterprises</h3>
-                        <ul>
-                            <li>Navigate complex transformations</li>
-                            <li>Analyze departmental dynamics</li>
-                            <li>Foster a culture of innovation</li>
-                        </ul>
+                    <div class="about-image">
+                                                <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200" alt="Three diverse business consultants collaborating around a modern office table">
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="cta-banner">
+        <section id="contact">
             <div class="container">
-                 <h2>Ready to unlock your team's potential?</h2>
-                 <a href="https://forms.gle/yMRy18oYrWUpB5zcA" target="_blank">Start the Conversation</a>
+                <h2>Let's Start a Conversation</h2>
+                <p class="section-subtitle">We're ready to learn about your goals. Fill out the form below, and one of our lead consultants will be in touch shortly.</p>
+                <form id="contact-form" onsubmit="event.preventDefault(); alert('Form submitted! (This is a demo)');">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">How can we help?</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit">Send Message</button>
+                </form>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col footer-col-1">
-                    <h3>TC<span>G</span></h3>
-                    <p>Your trusted partner in growth, helping you build a resilient culture that drives success.</p>
-                </div>
-                <div class="footer-col footer-col-2">
-                    <h3>Quick Links</h3>
-                    <p><a href="#services">Core Services</a></p>
-                    <p><a href="#method">Our Method</a></p>
-                    <p><a href="#about">About Us</a></p>
-                    <p><a href="#use-cases">Use Cases</a></p>
-                </div>
-                <div class="footer-col footer-col-3">
-                    <h3>Contact Us</h3>
-                    <p>123 Business Rd, Suite 456<br>New York, NY 10001</p>
-                    <p><a href="mailto:contact@tcg.example.com">contact@tcg.example.com</a></p>
-                </div>
-            </div>
-            <div class="footer-copyright">
-                <p>&copy; 2025 Taylor Consulting Group. All Rights Reserved.</p>
-            </div>
+        <div class="container footer-container">
+            <div class="footer-logo">TC<span>G</span></div>
+            <p class="footer-copyright">&copy; 2025 Taylor Consulting Group. All Rights Reserved.</p>
         </div>
     </footer>
-
+    
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const header = document.querySelector('.header');
-            const navLinksContainer = document.querySelector('.nav-links');
-            const hamburger = document.querySelector('.hamburger-menu');
-            const sections = document.querySelectorAll('main section');
-            const navLinks = document.querySelectorAll('.nav-links a');
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
 
-            // Header shadow on scroll
+            // Add shadow to header on scroll
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 20) {
-                    header.style.backgroundColor = 'rgba(17, 24, 39, 0.8)';
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
                 } else {
-                    header.style.backgroundColor = 'rgba(17, 24, 39, 0.8)';
+                    header.classList.remove('scrolled');
                 }
             });
-            
-            // Hamburger Menu
-            hamburger.addEventListener('click', () => {
-                navLinksContainer.classList.toggle('mobile-active');
+
+            // Intersection Observer for section fade-in animation
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => {
+                sectionObserver.observe(section);
             });
 
-            // Interactive Tabs for Core Services
-            const tabsContainer = document.querySelector('.tabs-container');
-            if (tabsContainer) {
-                const tabButtons = tabsContainer.querySelectorAll('.tab-button');
-                const tabContents = tabsContainer.querySelectorAll('.tab-content');
-
-                tabButtons.forEach(button => {
-                    button.addEventListener('click', () => {
-                        const tabNumber = button.dataset.tab;
-
-                        tabButtons.forEach(btn => btn.classList.remove('active'));
-                        tabContents.forEach(content => content.classList.remove('active'));
-
-                        button.classList.add('active');
-                        tabsContainer.querySelector(`.tab-content[data-tab="${tabNumber}"]`).classList.add('active');
-                    });
-                });
-            }
-            
-            // Interactive Stepper for Method Section
-            const stepperContainer = document.querySelector('.stepper-container');
-            if (stepperContainer) {
-                const steps = stepperContainer.querySelectorAll('.step');
-                const stepContents = stepperContainer.querySelectorAll('.stepper-content');
-
-                steps.forEach(step => {
-                    step.addEventListener('click', () => {
-                        const stepNumber = step.dataset.step;
-
-                        steps.forEach(s => s.classList.remove('active'));
-                        stepContents.forEach(c => c.classList.remove('active'));
-
-                        step.classList.add('active');
-                        stepperContainer.querySelector(`.stepper-content[data-step="${stepNumber}"]`).classList.add('active');
-                    });
-                });
-            }
-
-            // Testimonial Carousel
-            const slides = document.querySelector('.testimonial-slides');
-            const slide = document.querySelectorAll('.testimonial-slide');
-            const dotsContainer = document.querySelector('.carousel-dots');
-            const prevBtn = document.querySelector('.prev-btn');
-            const nextBtn = document.querySelector('.next-btn');
-
-            if (slides) {
-                let currentSlide = 0;
-                const slideCount = slide.length;
-
-                for (let i = 0; i < slideCount; i++) {
-                    const dot = document.createElement('span');
-                    dot.classList.add('dot');
-                    dot.addEventListener('click', () => goToSlide(i));
-                    dotsContainer.appendChild(dot);
-                }
-                
-                const dots = document.querySelectorAll('.dot');
-                
-                const goToSlide = (n) => {
-                    currentSlide = (n + slideCount) % slideCount;
-                    slides.style.transform = `translateX(-${currentSlide * 100}%)`;
-                    dots.forEach(d => d.classList.remove('active'));
-                    dots[currentSlide].classList.add('active');
-                };
-
-                nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
-                prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
-                
-                let autoPlay = setInterval(() => goToSlide(currentSlide + 1), 5000);
-                document.querySelector('.testimonial-carousel').addEventListener('mouseenter', () => clearInterval(autoPlay));
-                document.querySelector('.testimonial-carousel').addEventListener('mouseleave', () => autoPlay = setInterval(() => goToSlide(currentSlide + 1), 5000));
-
-                goToSlide(0);
-            }
-
-            // Active nav link on scroll
-            const observer = new IntersectionObserver((entries) => {
+            // Intersection Observer for active nav link highlighting
+            const navObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         navLinks.forEach(link => {
-                            const href = link.getAttribute('href');
                             link.classList.remove('active');
-                            if (href.includes('#') && href.split('#')[1] === entry.target.id) {
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
                                 link.classList.add('active');
                             }
                         });
@@ -860,11 +520,12 @@
                 });
             }, { rootMargin: '-50% 0px -50% 0px' });
 
-            sections.forEach(sec => {
-                if(sec.id) observer.observe(sec);
+            sections.forEach(section => {
+                if (section.id) { // Only observe sections with an ID
+                    navObserver.observe(section);
+                }
             });
         });
     </script>
 </body>
 </html>
-
