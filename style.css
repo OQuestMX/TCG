@@ -224,31 +224,45 @@
 
         /* --- About Us Section --- */
         #about {
-            background-color: #f8fafc;
+            background-color: #f8fafc; /* This will show while the image loads */
+    /* Add the image here. Quotes are required because of the space in the filename. */
+    background-image: url('Background 1.png');
+    /* Optional but recommended settings for a good background */
+    background-size: cover;   /* Ensures the image covers the whole area */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from tiling */
+    text-align: center;
+    padding: 120px 0;
+    color: white;
         }
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
+            color: white;
+        }
+
+        .section-subtitle {
+            color: whitesmoke;
         }
 
         .about-image img {
             width: 100%;
             border-radius: 8px;
-            box-shadow: var(--shadow-medium);
+            box-shadow: white(--shadow-medium);
         }
 
         .about-content h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
             font-weight: 600;
-            color: var(--dark-text);
+            color: white;
         }
 
         .about-content p {
             margin-bottom: 15px;
-            color: var(--secondary-text);
+            color: whitesmoke;
         }
 
         /* --- Contact Section --- */
