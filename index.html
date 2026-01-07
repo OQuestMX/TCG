@@ -157,20 +157,28 @@
 
         /* --- Hero Section --- */
         .hero {
-            background-color: #f8fafc;
-            text-align: center;
-            padding: 120px 0;
-        }
+    background-color: #f8fafc; /* This will show while the image loads */
+    /* Add the image here. Quotes are required because of the space in the filename. */
+    background-image: url('Background 1.png');
+    /* Optional but recommended settings for a good background */
+    background-size: cover;   /* Ensures the image covers the whole area */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from tiling */
+
+    text-align: center;
+    padding: 120px 0;
+                }
 
         .hero h1 {
             font-size: 3.5rem;
             max-width: 800px;
             margin: 0 auto 20px auto;
+            color: antiquewhite;
         }
 
         .hero p {
             font-size: 1.2rem;
-            color: var(--secondary-text);
+            color: white;
             max-width: 650px;
             margin: 0 auto 30px auto;
         }
@@ -376,7 +384,7 @@
 
     <header class="header">
         <nav class="container">
-            <a href="#" class="nav-logo">TC<span>G</span></a>
+            <img src="Icono 04.png" width="50" height="50">
             <ul>
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#services">Services</a></li>
@@ -389,7 +397,7 @@
     <main>
         <section id="home" class="hero">
             <div class="container">
-                <h1>Driving Growth Through Strategic Insight</h1>
+                <h1>Culture First <br> Talent Solutions</h1>
                 <p>Taylor Consulting Group partners with businesses to unlock potential, navigate complexity, and achieve sustainable results.</p>
                 <a href="#services" class="cta-button">Explore Our Services</a>
             </div>
@@ -397,32 +405,26 @@
 
         <section id="services">
             <div class="container">
-                <h2>Our Core Capabilities</h2>
-                <p class="section-subtitle">We provide tailored solutions across a range of essential business functions to help you overcome challenges and seize opportunities.</p>
+                <h2>La Cultura al Centro</h2>
+                <p class="section-subtitle">Somos una firma que pone al centro de nuestra práctica el <strong>entendimiento profundo de la cultura.</strong>
+                    <br><br> Nos enfocamos en la cultura de tu empresa para crear una experiencia de talento personalizada.
+                     Nuestro esfuerzo está en producir resultados extraordinarios y redeﬁnir industrias.</p>
                 <div class="capabilities-container">
                     <div class="capability-item">
-                        <h3>Strategy & Planning</h3>
-                        <p>Developing robust, data-driven strategies that align with your long-term vision and market realities.</p>
+                        <h3>Headhunting</h3>
+                        <p>Nos dedicamos a decodificar el problema desde su raíz cultural y solucionarlo de manera integral para que tu empresa crezca.</p>
                     </div>
                     <div class="capability-item">
-                        <h3>Operational Excellence</h3>
-                        <p>Streamlining processes, optimizing workflows, and enhancing productivity for peak performance.</p>
+                        <h3>Group Diagnostics</h3>
+                        <p>A través de diagnósticos profundos y entrevistas sin filtros, mapeamos el estado real de la organización, exponiendo obstáculos culturales y estructurales ocultos.</p>
                     </div>
                     <div class="capability-item">
-                        <h3>Market Analysis</h3>
-                        <p>Providing deep market intelligence and competitive analysis to inform your strategic decisions.</p>
+                        <h3>Outplacement</h3>
+                        <p>Enseñamos a sus ejecutivos salientes a redefinir su oferta de valor y convertirse en activos de mercado.</p>
                     </div>
                     <div class="capability-item">
-                        <h3>Digital Transformation</h3>
-                        <p>Guiding your business through technology adoption to improve efficiency and customer engagement.</p>
-                    </div>
-                    <div class="capability-item">
-                        <h3>Financial Advisory</h3>
-                        <p>Offering expert financial modeling, risk management, and investment strategy services.</p>
-                    </div>
-                    <div class="capability-item">
-                        <h3>Leadership Development</h3>
-                        <p>Cultivating strong leadership and high-performing teams through targeted coaching and training.</p>
+                        <h3>Onboarding</h3>
+                        <p>Diseñamos experiencias a la medida para que tus nuevos ingresos se enamoren de tu empresa.</p>
                     </div>
                 </div>
             </div>
@@ -430,13 +432,13 @@
         
         <section id="about">
             <div class="container">
-                <h2>Your Trusted Partner in Growth</h2>
-                <p class="section-subtitle">We are a team of experienced consultants dedicated to delivering measurable impact and building lasting relationships with our clients.</p>
+                <h2>Sobre TCG</h2>
+                <p class="section-subtitle">Somos un grupo de consultores de talento con más de 15 años ayudando a las empresas encontrar el mejor talento y administrarlo con éxito.</p>
                 <div class="about-grid">
                     <div class="about-content">
-                        <h3>Our Philosophy</h3>
-                        <p>At Taylor Consulting Group, we believe success is built on a foundation of collaboration and clarity. We immerse ourselves in your world to understand your unique challenges and opportunities, acting as a true extension of your team.</p>
-                        <p>Our approach is hands-on and results-oriented. We don't just deliver reports; we roll up our sleeves to help you implement change, navigate obstacles, and achieve your most ambitious goals.</p>
+                        <h3>Nuestra Filosofía</h3>
+                        <p>En Taylor Consulting Group creemos firmemente que la cultura es el habilidator más importante de todo ser humano.</p>
+                        <p>Nuestro acercamiento pone en el centro de cada actividad el entendimiento profundo de la cultura; cómo se compone, se organiza y se modifica para alcanzar las metas.</p>
                     </div>
                     <div class="about-image">
                                                 <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200" alt="Three diverse business consultants collaborating around a modern office table">
@@ -447,7 +449,7 @@
 
         <section id="contact">
             <div class="container">
-                <h2>Let's Start a Conversation</h2>
+                <h2>¿Platicamos?</h2>
                 <p class="section-subtitle">We're ready to learn about your goals. Fill out the form below, and one of our lead consultants will be in touch shortly.</p>
                 <form id="contact-form" onsubmit="event.preventDefault(); alert('Form submitted! (This is a demo)');">
                     <div class="form-row">
