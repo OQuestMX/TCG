@@ -217,7 +217,7 @@
         }
 
         .capability-item p {
-            color: var(--secondary-text);
+            color: black;
             font-size: 0.95rem;
             line-height: 1.6;
         }
