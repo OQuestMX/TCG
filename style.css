@@ -195,6 +195,11 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
+            color: black;
+        }
+        
+        p.section-subtitle {
+            color: black;
         }
 
         .capability-item {
@@ -203,6 +208,7 @@
             border: 1px solid var(--border-color);
             border-radius: 8px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: black;
         }
 
         .capability-item:hover {
@@ -217,10 +223,11 @@
         }
 
         .capability-item p {
-            color: black;
+            color: var(--secondary-text);
             font-size: 0.95rem;
             line-height: 1.6;
         }
+
 
         /* --- About Us Section --- */
         #about {
@@ -380,4 +387,21 @@
             .form-row {
                 grid-template-columns: 1fr;
             }
+        }
+
+        button {
+            font-family: 'Inter', sans-serif;
+            width: auto;
+            height: auto;
+            padding: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .section-subtitle2 {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 50px auto;
+            color: whitesmoke;
+            font-size: 1.1rem;
         }
